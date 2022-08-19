@@ -1,35 +1,51 @@
-import React from 'react'
 import {createStore} from 'redux'
 
+
 // reducer
-const counter = (state = 0, action ) => {
+const todos = (state = [], action) =>  {
 	switch (action.type) {
-		case 'INCREMENT': {
-			return state + 1;
+		case 'ADD_TODO': {
+			return [
+				...state,
+				{
+					id: Date.now(),
+					title: action.title,
+					completed: false
+				}
+			]
 		}
-		case 'DECREMENT': {
-			return state - 1;
+		case 'REMOVE_TODO': {
+			return state.filter(todo => todo.id !== action.id)
 		}
-		case 'RESET': {
-			return state = 0
+		case 'TOGGLE_TODO': {
+			return state.map(todo => todo.id === action.id ? { ...todo, completed: !todo.completed } : todo)
 		}
 		default: {
-			return state
+			return state;
 		}
 	}
 }
 
-// store
-export const store = createStore(counter)
+// store 
+export const store = createStore(todos, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() )
 
-// actions
-export const increment = {
-	type: 'INCREMENT'
-}
-export const decrement = {
-	type: 'DECREMENT'
-}
-export const reset = {
-	type: 'RESET'
-}
 
+// action creators
+export const addTodo = (title) => (
+	{
+		type: 'ADD_TODO',
+		title
+	}
+)
+export const removeTodo = (id) => (
+	{
+		type: 'REMOVE_TODO',
+		id
+	}
+)
+export const toggleTodo = (id) => (
+	{
+		type: 'TOGGLE_TODO',
+		id
+	}
+)
