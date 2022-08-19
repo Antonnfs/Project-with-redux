@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 import { NewTodo } from './components/NewTodo';
 import { TodoList } from './components/TodoList';
+import Filters from './components/Filters';
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
 	
 			<main className='container flex flex-col items-center'>
 				<NewTodo />
+				<Filters/>
 				<TodoList />
 			</main>
 		</div>
