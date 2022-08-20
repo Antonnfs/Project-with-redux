@@ -1,17 +1,14 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectActiveFilter } from '../store/filters/filters-selectors'; 
-import { setFilter } from '../store/filters/filters-actions';
+
+import { Link, useParams } from 'react-router-dom';
 
 export default function Filters() {
-	const dispatch = useDispatch();
-	const activeFilter = useSelector(selectActiveFilter);
-
+	const {filter = 'all'} = useParams()
 	return (
 		<div className=' flex justify-center gap-5 mb-7 border-b'>
-			<button onClick={() => dispatch(setFilter('all'))} className={activeFilter === 'all' ? 'text-red-500' : 'text-black-900'}>All</button>
-			<button onClick={() => dispatch(setFilter('active'))} className={activeFilter === 'active' ? 'text-red-500' : 'text-black-900'}>Active</button>
-			<button onClick={() => dispatch(setFilter('completed'))} className={activeFilter === 'completed' ? 'text-red-500' : 'text-black-900'}>Completed</button>
+			<Link to='/all' className={filter === 'all' ? 'text-red-500' : 'text-black-900'}>All</Link>
+			<Link to='/active' className={filter === 'active' ? 'text-red-500' : 'text-black-900'}>Active</Link>
+			<Link to='/completed' className={filter === 'completed' ? 'text-red-500' : 'text-black-900'}>Completed</Link>
 		</div>
 	)
 }

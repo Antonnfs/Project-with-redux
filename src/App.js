@@ -11,12 +11,10 @@ const App = () => {
 		<div className=' bg-indigo-900 h-screen text-white'>
 			<header className='py-4 font-bold text-3xl flex justify-center font-sans items-center container mx-auto'>
 				<h1 className='items-center text-teal-400 mx-4' >Hello Redux</h1>
-				
 			</header>
-	
-			<main className='container flex flex-col items-center'>
+			<main className='container mx-auto flex flex-col items-center'>
 				<NewTodo />
-				<Filters/>
+					<Filters/>
 				<TodoList />
 			</main>
 		</div>
