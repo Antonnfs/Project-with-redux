@@ -12,7 +12,7 @@ export const TodoList = () => {
 	return (
 		<ul className='text-1xl'>
 			{todos.map(todo => (
-				<li key={todo.id} className='space-x-5'>
+				<li key={todo.id} className='space-x-5 flex justify-between mb-2 wm-auto'>
 					<input type='checkbox' checked={todo.completed} className=' m-2' onChange={() => dispatch(toggleTodo(todo.id))}/><span className=''>{todo.title}</span>
 					<button onClick={() => dispatch(removeTodo(todo.id))} className=' border rounded px-2 bg-teal-500 cursor-pointer hover:bg-teal-600 active:bg-teal-800' >delete</button>
 				</li>
